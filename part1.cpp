@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <random>
+#include "get_walltime.c"
 
 using namespace std;
 
@@ -51,7 +52,12 @@ vector<vector<int> > matrix_multiplication(int num){
 }
 
 int main(){
-    vector<vector<int> > matrix = matrix_multiplication(3);
+    double time_begin, time_end;
+    get_walltime(&time_begin);
+    vector<vector<int> > matrix = matrix_multiplication(100);
     cout<<"result: "<<endl;
     matrix_pinter(matrix);
+    get_walltime(&time_end);
+
+    cout<<"Performance: "<<(time_end-time_begin)<<endl;
 }
