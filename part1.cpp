@@ -31,15 +31,19 @@ void matrix_pinter(const vector<vector<int> >& matrix_temp){
     }
 }
 
-vector<vector<int> > matrix_multiplication(int num){
+void matrix_multiplication(int num){
+    double time_begin, time_end;
     vector<vector<int> > result(num, vector<int>(num, 0));
 
     vector<vector<int> > matrix_one = matrix_generator(num);
     cout<<"matrix one: "<<endl;
     matrix_pinter(matrix_one);
+
     vector<vector<int> > matrix_two = matrix_generator(num);
     cout<<"matrix two: "<<endl;
     matrix_pinter(matrix_two);
+
+    get_walltime(&time_begin);
 
     for(int i=0;i<num;++i){
         for(int j=0;j<num;++j){
@@ -48,16 +52,16 @@ vector<vector<int> > matrix_multiplication(int num){
             }
         }
     }
-    return result;
+
+    get_walltime(&time_end);
+
+    cout<<"result: "<<endl;
+    matrix_pinter(result);
+
+    cout<<"Performance: "<<(time_end-time_begin)<<endl;
 }
 
 int main(){
-    double time_begin, time_end;
-    get_walltime(&time_begin);
-    vector<vector<int> > matrix = matrix_multiplication(100);
-    cout<<"result: "<<endl;
-    matrix_pinter(matrix);
-    get_walltime(&time_end);
+    matrix_multiplication(100);
 
-    cout<<"Performance: "<<(time_end-time_begin)<<endl;
 }
