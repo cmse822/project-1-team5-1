@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 #include <random>
+#include <cmath>
+#include <iomanip>
 #include "get_walltime.c"
 
 using namespace std;
@@ -31,17 +33,17 @@ void matrix_pinter(const vector<vector<int> >& matrix_temp){
     }
 }
 
-void matrix_multiplication(int num){
+double matrix_multiplication(int num){
     double time_begin, time_end;
     vector<vector<int> > result(num, vector<int>(num, 0));
 
     vector<vector<int> > matrix_one = matrix_generator(num);
-    cout<<"matrix one: "<<endl;
-    matrix_pinter(matrix_one);
+//    cout<<"matrix one: "<<endl;
+//    matrix_pinter(matrix_one);
 
     vector<vector<int> > matrix_two = matrix_generator(num);
-    cout<<"matrix two: "<<endl;
-    matrix_pinter(matrix_two);
+//    cout<<"matrix two: "<<endl;
+//    matrix_pinter(matrix_two);
 
     get_walltime(&time_begin);
 
@@ -55,13 +57,23 @@ void matrix_multiplication(int num){
 
     get_walltime(&time_end);
 
-    cout<<"result: "<<endl;
-    matrix_pinter(result);
+//    cout<<"result: "<<endl;
+//    matrix_pinter(result);
 
     cout<<"Performance: "<<(time_end-time_begin)<<endl;
+    return time_end-time_begin;
 }
 
 int main(){
-    matrix_multiplication(100);
-
+    int num = 100;
+    double average_time = 0.0;
+    for(int i=0;i<num;++i){
+       average_time += matrix_multiplication(num);
+    }
+    average_time/=100;
+    cout<<"Average Time Computing: " << average_time<<endl;
+    double Mflop_s = (pow(num,3)*2)/average_time;
+    cout<<"performance in Mflop/s(scientific format): " << Mflop_s<<endl;
+    cout << fixed << setprecision(2);
+    cout<<"performance in Mflop/s: " << Mflop_s<<endl;
 }

@@ -9,13 +9,19 @@
 2 flop, 3 memory operation
 
 # Part 1
-- question 1: see matrix_multiplication function in file part1.cpp.  
-- question 2: `result[i][j] += matrix_one[i][k] * matrix_two[k][j];`.  
+- question 1:   
+see matrix_multiplication function in file part1.cpp.  
+- question 2:   
+`result[i][j] += matrix_one[i][k] * matrix_two[k][j];`.  
   2 flop, 3 memory operation.  
-Putting this line of code into a three nested loop with given matrix size N, and we get result, N^3/12
-- question 3: execution time: 0.00534606
+Putting this line of code into a three nested loop with given matrix size N, and we get result, 2*N^3
+- question 3:  
+  Average Time Computing: 0.00492464.   
+ `Mflop_s = (pow(num,3)*2)/average_time`  
+  performance in Mflop/s(scientific format): 4.06121e+08.  
+  performance in Mflop/s: 406120805.89
 - question 4: hint: you would calculate the theoretical peak performance as the product of the clock speed (in ticks per second), number of floating point units, and the
-  number of cores.
+  number of cores. // citation: from textbook https://cmse822.github.io/assets/EijkhoutIntroToHPC2020.pdf 17.1
 
 
 
