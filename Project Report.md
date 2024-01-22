@@ -20,8 +20,13 @@ Putting this line of code into a three nested loop with given matrix size N, and
  `Mflop_s = (pow(num,3)*2)/average_time`  
   performance in Mflop/s(scientific format): 4.06121e+08.  
   performance in Mflop/s: 406120805.89
-- question 4: hint: you would calculate the theoretical peak performance as the product of the clock speed (in ticks per second), number of floating point units, and the
-  number of cores. // citation: from textbook https://cmse822.github.io/assets/EijkhoutIntroToHPC2020.pdf 17.1
+- question 4: 
+  Machine: Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz
+  `Theoretical Peak = Clock Speed x No. of Floating Point Units x No. of Cores`
+  Clock Speed = 2.40GHz
+  No. of Floating Point Units = 1 
+  No. of Cores = 40
+  Theoretical Peak = 96 GFLOPS
 
 
 
