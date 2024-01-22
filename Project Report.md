@@ -23,7 +23,7 @@ Memory Opertaion: 2
 FLOP: 3    
 Putting this line of code into a three nested loop with given matrix size N, and we get result, 2*N^3
 
-3. `Mflop_s = (pow(num,3)*2)/average_time/pow(10,6)`    
+3. `Mflop_s = (pow(num,3)*2) /average_time/ pow(10,6)`    
 Average Time Computing: 0.0115497    
 Performance in Mflop/s(scientific format): 1.73e+02    
 Performance in Mflop/s: 173.16    
