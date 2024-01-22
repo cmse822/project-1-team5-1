@@ -72,7 +72,7 @@ int main(){
     }
     average_time/=100;
     cout<<"Average Time Computing: " << average_time<<endl;
-    double Mflop_s = (pow(num,3)*2)/average_time;
+    double Mflop_s = (pow(num,3)*2)/average_time/pow(10,6);
     cout<<"performance in Mflop/s(scientific format): " << Mflop_s<<endl;
     cout << fixed << setprecision(2);
     cout<<"performance in Mflop/s: " << Mflop_s<<endl;
