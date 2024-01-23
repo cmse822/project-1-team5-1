@@ -100,13 +100,14 @@ We ran the Empirical Roofline Model on 2 architectures on HPCC: intel 18 and amd
 
 3. **Peak performances, bandwidths, and ridgeline:**
 The above Roofline plots illustrate the relationship between operational intensity and the performance of the computing architecture – GFLOPS/s / FLOPS/byte.  Value labels of each red line correspond to the maximum memory bandwidth available at cache levels L1, L2, and DRAM – this being the rate data can be read or written to memory from the CPU.  The different cache levels have a theoretical maximum memory bound bandwidth of 56.4, 37.4 and 20.5 GB/s for L1, L2 and DRAM, respectively. The peak theoretical performance for FP64 – the double-precision operations is 12.3 GLOPS/sec. Intersections of L1, L2, and DRAM and the horizontal peak performance line are the ridge-line points that highlight the moment when arithmetic/operational intensity is constrained by the machine’s computing ability, rather than its memory bandwidth.  Hence, by attempting to keep more of a tasks workload in the higher-level caches, like L1, we can approach the peak performance and, thus, efficiency for that machine.
- $ Arithmetic Intensity = \frac{Peak Performance(GFLOPs/sec)}{Bandwidth(GB/sec)}$
+
+ $$Arithmetic Intensity = \frac{Peak Performance(GFLOPs/sec)}{Bandwidth(GB/sec)}$$
 Hence,
- $L1CacheRidgepoint$ = \frac{12.3 GFLOPs/sec}{56.4 GB/s} = 0.218 FLOPS/byte$
+ $L1CacheRidgepoint = \frac{12.3 GFLOPs/sec}{56.4 GB/s} = 0.218 FLOPS/byte$
 
-$L2CacheRidgepoint$ = \frac{12.3 GFLOPs/sec}{37.4.4 GB/s} = 0.328 FLOPS/byte$
+$L2CacheRidgepoint = \frac{12.3 GFLOPs/sec}{37.4.4 GB/s} = 0.328 FLOPS/byte$
 
-$DRAMCacheRidgepoint$ = \frac{12.3 GFLOPs/sec}{20.5 GB/s} = 0.6 FLOPS/byte$
+$DRAMCacheRidgepoint = \frac{12.3 GFLOPs/sec}{20.5 GB/s} = 0.6 FLOPS/byte$
 
 4.**Consider the four FP kernels in "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures" (see their Table 2). Assuming the high end of operational (i.e., "arithmetic") intensity, how would these kernels perform on the platforms you are testing? What optimization strategy would you recommend to increase performance of these kernels?**
 
