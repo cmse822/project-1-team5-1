@@ -23,19 +23,32 @@ Memory Opertaion: 2
 FLOP: 3    
 Putting this line of code into a three nested loop with given matrix size N, and we get result, 2*N^3
 
-3. `Mflop_s = (pow(num,3)*2) /average_time/ pow(10,6)`    
+3. `Mflop_s = (pow(num,3)*2) /average_time/ pow(10,6)`
+Machine: Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz (Intel18)       
 Average Time Computing: 0.0115497    
 Performance in Mflop/s(scientific format): 1.73e+02    
 Performance in Mflop/s: 173.16    
+    
+Machine: Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz (Intel16)    
+Average Time Computing: 0.01454    
+Performance in Mflop/s(scientific format): 1.38e+02    
+Performance in Mflop/s: 137.55    
 
 4. `Theoretical Peak = Clock Speed x No. of Floating Point Units x No. of Cores`   
-Machine: Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz    
+Machine: Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz (Intel18)   
 Clock Speed = 2.40GHz    
 No. of Floating Point Units = 1    
 No. of Cores = 40    
 Theoretical Peak = 96 Gflop/s    
-The measured performance is significantly lower than the theoretical peak performance. 
-  
+The measured performance is significantly lower than the theoretical peak performance.     
+        
+Machine: Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz (Intel16)    
+Clock Speed = 3.154541GHz        
+No. of Floating Point Units = 1    
+No. of Cores = 28    
+Theoretical Peak = 88.327148 Gflop/s    
+The measured performance is significantly lower than the theoretical peak performance.     
+
 5.
 
 6.
