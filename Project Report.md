@@ -34,7 +34,8 @@ Putting this line of code into a three nested loop with given matrix size N, and
     Performance in Mflop/s(scientific format): 2.12e+03    
     Performance in Mflop/s: 2123.90    
 
-4. `Theoretical Peak = Clock Speed x No. of Floating Point Units x No. of Cores`   
+4. `Theoretical Peak = Clock Speed x No. of Floating Point Units x No. of Cores` 
+    lscpu returns the information for entire cluster, but techinically we are only running on one CPU in the entire cluster.     
     Machine: Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz (Intel18)   
     Clock Speed = 2.40GHz    
     No. of Floating Point Units = 1    
