@@ -97,6 +97,8 @@ We ran the Empirical Roofline Model on 2 architectures on HPCC: intel 18 and amd
     <img src="part2/intel18_roofline.png" width="50%" height="auto">
     <figcaption>Intel 18</figcaption>
 </figure>
+
+
 <figure>
     <img src="part2/amd20_roofline.png" width="50%" height="auto">
     <figcaption>AMD 20</figcaption>
@@ -116,10 +118,20 @@ These results indicate that workloads relying on lower parts of the memory hiera
 
 4. Consider the four FP kernels in "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures" (see their Table 2). Assuming the high end of operational (i.e., "arithmetic") intensity, how would these kernels perform on the platforms you are testing? What optimization strategy would you recommend to increase performance of these kernels?
 
-5. Address the same questions in (4) for the four kernels given in the Warm-up above.
-(be sure to address the fact that we’re assuming ‘’the high end of operational intensity’)
-Among the four kernels in the warm-up, each have different characteristics regarding temporal and spatial locality, so the optimization methods might change for each. For example, the first kernel:
- Y[j] += Y[j] + A[j][i] * B[i], we see that this likely has low temporal locality due to the two indices j and i.  Thus, j is the outer loop and it must complete all of the computations for one j before moving to the ith index.  To improve computing efficiency, SIMD, stencil, or blocking – referenced in the paper, are methods that could improve a kernel like this one.  
+4.**Consider the four FP kernels in "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures" (see their Table 2). Assuming the high end of operational (i.e., "arithmetic") intensity, how would these kernels perform on the platforms you are testing? What optimization strategy would you recommend to increase performance of these kernels?**
+From the table we can see the operational intensity of each of the kernels.
+Firstly, the SpMV has maximum operational intensity of 0.25, LBMHD: 1.07, Stencil: 0.5 and 3-D FFT: 1.64. If we plot the vertical lines corresponding to them on both roofline model plots we will get something like this (note: these plots are made by adding the vertical lines *by hand*).
+
+<figure>
+    <img src="part2/intel18_roofline_4kernels.png" width="50%" height="auto">
+    <figcaption>Intel 18</figcaption>
+</figure>
+
+
+<figure>
+    <img src="part2/amd20_roofline_4kernels.png" width="50%" height="auto">
+    <figcaption>AMD 20</figcaption>
+<figure>
 
 6. Compare your results for the roofline model to what you obtained for the matrix-matrix multiplication operation from Part 1. How are the rooflines of memory bandwidth related to the features in the algorithmic performance as a function of matrix size?
 
