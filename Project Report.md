@@ -116,8 +116,6 @@ DRAM Cache Ridgepoint =(12.3 GFLOPs/sec)/(20.5 GB/s)=0.6 FLOPs/byte
 
 These results indicate that workloads relying on lower parts of the memory hierarchy for data access must have a substantially larger arithmetic intensity before overcoming memory bandwidth limitations and approach peak computing performance. (Note – arithmetic intensity levels on x-axis prior to reaching the peak perf line are memory bound, rather than compute bound).
 
-4. Consider the four FP kernels in "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures" (see their Table 2). Assuming the high end of operational (i.e., "arithmetic") intensity, how would these kernels perform on the platforms you are testing? What optimization strategy would you recommend to increase performance of these kernels?
-
 4.**Consider the four FP kernels in "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures" (see their Table 2). Assuming the high end of operational (i.e., "arithmetic") intensity, how would these kernels perform on the platforms you are testing? What optimization strategy would you recommend to increase performance of these kernels?**
 From the table we can see the operational intensity of each of the kernels.
 Firstly, the SpMV has maximum operational intensity of 0.25, LBMHD: 1.07, Stencil: 0.5 and 3-D FFT: 1.64. If we plot the vertical lines corresponding to them on both roofline model plots we will get something like this (note: these plots are made by adding the vertical lines *by hand*).
