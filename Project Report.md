@@ -169,7 +169,8 @@ The last two kernels, the same methods to overcome their constraints could be ap
 
 
     So for both amd 20 and intel 18, SpMV and Stencil would be bandwidth-bound and LBMHD and 3D-FFT would be compute-bound. To improve performance, based on the ERT paper, to reduce computational limits, we can improve ILP and apply SIMD, and/or balance floating-point operation mix. To reduce limits on bandwidth-bound kernels, we can restucture loops for unit size accesses and ensure memomry affinity. This conclusion is based on https://www2.eecs.berkeley.edu/Pubs/TechRpts/2008/EECS-2008-134.pdf.
-
+5. 
+    ???
 
 6. 
     By comparing the results of the roofline model to those of the matrix-matrix multiplication in part 1, there are several noteworthy observations and explanations.  For example, we see that the L1 cache ridge-point is 0.218 and over the range of matrix size N, matrix-matrix multiplication peak around ≈0.18, which occurs when N is quite small - likely between 10 and 20.  When N is small, the entire matrices fit into the CPU’s cache (perhaps caches L1 and L2) and efficiency is at its peak because there are no memory access delays.  As N grows, there are clear points in the plot where the matrices no longer fit into the upper memory caches and cache misses begin to occur, thus showing decreases in GFLOPs/sec followed by plateaus.  When N gets very large and the upper levels caches become fully utilized, then requiring DRAM access, resulting in slower computational efficiency.  Eventually, we reach a point, around where N=2000, that DRAM is also being heavily utilized and the bottleneck becomes the memory bandwidth.
