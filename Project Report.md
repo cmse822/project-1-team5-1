@@ -134,6 +134,9 @@ Putting this line of code into a three nested loop with given matrix size N, and
         <figcaption>AMD 20</figcaption>
     <figure>
 
+5. 
+    ???
+
 6. 
     By comparing the results of the roofline model to those of the matrix-matrix multiplication in part 1, there are several noteworthy observations and explanations.  For example, we see that the L1 cache ridge-point is 0.218 and over the range of matrix size N, matrix-matrix multiplication peak around ≈0.18, which occurs when N is quite small - likely between 10 and 20.  When N is small, the entire matrices fit into the CPU’s cache (perhaps caches L1 and L2) and efficiency is at its peak because there are no memory access delays.  As N grows, there are clear points in the plot where the matrices no longer fit into the upper memory caches and cache misses begin to occur, thus showing decreases in GFLOPs/sec followed by plateaus.  When N gets very large and the upper levels caches become fully utilized, then requiring DRAM access, resulting in slower computational efficiency.  Eventually, we reach a point, around where N=2000, that DRAM is also being heavily utilized and the bottleneck becomes the memory bandwidth.
 
