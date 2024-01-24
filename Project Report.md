@@ -134,6 +134,8 @@ Putting this line of code into a three nested loop with given matrix size N, and
         <figcaption>AMD 20</figcaption>
     <figure>
 
+
+    So for both amd 20 and intel 18, SpMV and Stencil would be bandwidth-bound and LBMHD and 3D-FFT would be compute-bound. To improve performance, based on the ERT paper, to reduce computational limits, we can improve ILP and apply SIMD, and/or balance floating-point operation mix. To reduce limits on bandwidth-bound kernels, we can restucture loops for unit size accesses and ensure memomry affinity. This conclusion is based on https://www2.eecs.berkeley.edu/Pubs/TechRpts/2008/EECS-2008-134.pdf.
 5. 
     ???
 
