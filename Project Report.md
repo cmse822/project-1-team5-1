@@ -136,19 +136,19 @@ Based on the output of our Empirical Roofline model, we note that if the FLOPs/b
 
 Among the four kernels in the warm-up, each have different characteristics regarding temporal and spatial locality, so the optimization methods might change for each. For example, the first kernel:
 
- Y[j] += Y[j] + A[j][i] * B[i] -- memory bound
+ Y[j] += Y[j] + A[j][i] * B[i] -- memory bound -- 0.09 FLOPs/byte
 
 We see that this likely has low temporal locality due to the two indices j and i, likely being memory constrained if computations become large.  Thus, j is the outer loop and it must complete all of the computations for one j before moving to the ith index.  To improve efficiency, SIMD, stencil, loop unrolling, or blocking – referenced in the paper, are methods that could improve a kernel like this one if we are assuming that we are already at the 'high end of operational intensity'.  Additionally, as referenced in the 3C's to operational intensity section, a method like padding arrays to reduce the traffic of from conflict misses increase memory constraints. By unrolling a loop like in this question, we could potentially improve the temporal locality by reducing the number of indices from 2 to 1, relying only on j.
 
-  s += A[i] * A[i] -- compute bound
+  s += A[i] * A[i] -- compute bound -- 0.23 FLOPs/byte
  
 This kernel has high temporal and spatial locality. The same data is referenced twice and it uses the same index. If this kernel were to reach a bottleneck, it would be from computing. Similar methods as referenced in question 4 could be applied -- balancing floating point operations and instruction-level parallelism.  (-- THIS SHOULD BE CONFIRMED WITH REST OF GROUP -- need to elaborate on how instruction level parallelism and balancing floating point ops will make this faster).
 
 The last two kernels, the same methods to overcome their constraints could be applied.
 
-  s += A[i] * B[i] -- this is memory bound since we are before the ridge-point of the L1 cache.  
+  s += A[i] * B[i] -- 0.125 FLOPs/byte -- this is memory bound since we are before the ridge-point of the L1 cache.  
 
-  Y[i] = A[i] + C*B[i] -- also memory bound
+  Y[i] = A[i] + C*B[i] -- 0.0833 FLOPs/byte -- also memory bound
 
 =======
 4.
@@ -169,8 +169,7 @@ The last two kernels, the same methods to overcome their constraints could be ap
 
 
     So for both amd 20 and intel 18, SpMV and Stencil would be bandwidth-bound and LBMHD and 3D-FFT would be compute-bound. To improve performance, based on the ERT paper, to reduce computational limits, we can improve ILP and apply SIMD, and/or balance floating-point operation mix. To reduce limits on bandwidth-bound kernels, we can restucture loops for unit size accesses and ensure memomry affinity. This conclusion is based on https://www2.eecs.berkeley.edu/Pubs/TechRpts/2008/EECS-2008-134.pdf.
-5. 
-    ???
+
 
 6. 
     By comparing the results of the roofline model to those of the matrix-matrix multiplication in part 1, there are several noteworthy observations and explanations.  For example, we see that the L1 cache ridge-point is 0.218 and over the range of matrix size N, matrix-matrix multiplication peak around ≈0.18, which occurs when N is quite small - likely between 10 and 20.  When N is small, the entire matrices fit into the CPU’s cache (perhaps caches L1 and L2) and efficiency is at its peak because there are no memory access delays.  As N grows, there are clear points in the plot where the matrices no longer fit into the upper memory caches and cache misses begin to occur, thus showing decreases in GFLOPs/sec followed by plateaus.  When N gets very large and the upper levels caches become fully utilized, then requiring DRAM access, resulting in slower computational efficiency.  Eventually, we reach a point, around where N=2000, that DRAM is also being heavily utilized and the bottleneck becomes the memory bandwidth.
