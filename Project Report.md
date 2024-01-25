@@ -159,26 +159,6 @@ For the second kernel, it appears to have high temporal and spatial locality. Th
 
 The last two kernels are both memory bound, like the first. Similar methods to overcome this constraints as mentioned for the first kernel could be applied to improve performance.
 
-5. Address the same questions in (4) for the four kernels given in the Warm-up above.
-
-    (be sure to address the fact that we’re assuming ‘’the high end of operational intensity’)
-
-    Among the four kernels in the warm-up, each have different characteristics regarding temporal and spatial locality, so the optimization methods might change for each. For example, the first kernel:
-
-    Y[j] += Y[j] + A[j][i] * B[i] -- memory bound -- 0.09 FLOPs/byte
-
-    We see that this likely has low temporal locality due to the two indices j and i, likely being memory constrained if computations become large.  Thus, j is the outer loop and it must complete all of the computations for one j before moving to the ith index.  To improve efficiency, SIMD, stencil, loop unrolling, or blocking – referenced in the paper, are methods that could improve a kernel like this one if we are assuming that we are already at the 'high end of operational intensity'.  Additionally, as referenced in the 3C's to operational intensity section, a method like padding arrays to reduce the traffic of from conflict misses increase memory constraints. By unrolling a loop like in this question, we could potentially improve the temporal locality by reducing the number of indices from 2 to 1, relying only on j.
-
-    s += A[i] * A[i] -- compute bound -- 0.23 FLOPs/byte
-    
-    This kernel has high temporal and spatial locality. The same data is referenced twice and it uses the same index. If this kernel were to reach a bottleneck, it would be from computing. Similar methods as referenced in question 4 could be applied -- balancing floating point operations and instruction-level parallelism.  (-- THIS SHOULD BE CONFIRMED WITH REST OF GROUP -- need to elaborate on how instruction level parallelism and balancing floating point ops will make this faster).
-
-    The last two kernels, the same methods to overcome their constraints could be applied.
-
-    s += A[i] * B[i] -- 0.125 FLOPs/byte -- this is memory bound since we are before the ridge-point of the L1 cache.  
-
-    Y[i] = A[i] + C*B[i] -- 0.0833 FLOPs/byte -- also memory bound
-
     <figure>
         <img src="part2/intel18_roofline_warmup_kernels.png" width="50%" height="auto">
         <figcaption>Intel 18</figcaption>
