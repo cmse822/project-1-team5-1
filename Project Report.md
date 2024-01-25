@@ -109,33 +109,20 @@ Putting this line of code into a three nested loop with given matrix size N, and
 3. 
     Peak performances, bandwidths, and ridgeline:
 
-<<<<<<< HEAD
-L1 Cache Ridgepoint =(12.3 GFLOPs/sec)/(56.4 GB/s)=0.218 FLOPs/byte
-
-L2 Cache Ridgepoint =(12.3 GFLOPs/sec)/(37.4 GB/s)=0.328 FLOPs/byte
-
-DRAM Cache Ridgepoint =(12.3 GFLOPs/sec)/(20.5 GB/s)=0.6 FLOPs/byte
-=======
-    The above Roofline plots illustrate the relationship between operational intensity and the performance of the computing architecture – GFLOPS/s / FLOPS/byte.  Value labels of each red line correspond to the maximum memory bandwidth available at cache levels L1, L2, and DRAM – this being the rate data can be read or written to memory from the CPU.  The different cache levels have a theoretical maximum memory bound bandwidth of 56.4, 37.4 and 20.5 GB/s for L1, L2 and DRAM, respectively. The peak theoretical performance for FP64 – the double-precision operations is 12.3 GLOPS/sec. Intersections of L1, L2, and DRAM and the horizontal peak performance line are the ridge-line points that highlight the moment when arithmetic/operational intensity is constrained by the machine’s computing ability, rather than its memory bandwidth.  Hence, by attempting to keep more of a task’s workload in the higher-level caches, like L1, we can approach the peak performance and, thus, efficiency for that machine.
-    Arithmetic Intensity=  (Peak Performance (GFLOPs/sec))/(Bandwidth (GB/sec))
+The above Roofline plots illustrate the relationship between operational intensity and the performance of the computing architecture – GFLOPS/s / FLOPS/byte.  Value labels of each red line correspond to the maximum memory bandwidth available at cache levels L1, L2, and DRAM – this being the rate data can be read or written to memory from the CPU.  The different cache levels have a theoretical maximum memory bound bandwidth of 56.4, 37.4 and 20.5 GB/s for L1, L2 and DRAM, respectively. The peak theoretical performance for FP64 – the double-precision operations is 12.3 GLOPS/sec. Intersections of L1, L2, and DRAM and the horizontal peak performance line are the ridge-line points that highlight the moment when arithmetic/operational intensity is constrained by the machine’s computing ability, rather than its memory bandwidth.  Hence, by attempting to keep more of a task’s workload in the higher-level caches, like L1, we can approach the peak performance and, thus, efficiency for that machine.
+    Arithmetic Intensity = (Peak Performance (GFLOPs/sec))/(Bandwidth (GB/sec))
     Hence,
->>>>>>> faad8336ceaa5587df177ebf09d0b942d6501569
 
     L1 Cache Ridgepoint =(12.3 GFLOPs/sec)/(56.4 GB/s)=0.218 FLOPs/byte
     L2 Cache Ridgepoint =(12.3 GFLOPs/sec)/(37.4 GB/s)=0.328 FLOPs/byte
     DRAM Cache Ridgepoint =(12.3 GFLOPs/sec)/(20.5 GB/s)=0.6 FLOPs/byte
 
-    These results indicate that workloads relying on lower parts of the memory hierarchy for data access must have a substantially larger arithmetic intensity before overcoming memory bandwidth limitations and approach peak computing performance. (Note – arithmetic intensity levels on x-axis prior to reaching the peak perf line are memory bound, rather than compute bound).
-
-<<<<<<< HEAD
+These results indicate that workloads relying on lower parts of the memory hierarchy for data access must have a substantially larger arithmetic intensity before overcoming memory bandwidth limitations and approach peak computing performance. (Note – arithmetic intensity levels on x-axis prior to reaching the peak perf line are memory bound, rather than compute bound).
 
 4. Consider the four FP kernels in "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures" (see their Table 2). Assuming the high end of operational (i.e., "arithmetic") intensity, how would these kernels perform on the platforms you are testing? What optimization strategy would you recommend to increase performance of these kernels?
 
-=======
-
     From the table we can see the operational intensity of each of the kernels.
     Firstly, the SpMV has maximum operational intensity of 0.25, LBMHD: 1.07, Stencil: 0.5 and 3-D FFT: 1.64. If we plot the vertical lines corresponding to them on both roofline model plots we will get something like this (note: these plots are made by adding the vertical lines *by hand*).
->>>>>>> faad8336ceaa5587df177ebf09d0b942d6501569
 
     <figure>
         <img src="part2/intel18_roofline_4kernels.png" width="50%" height="auto">
