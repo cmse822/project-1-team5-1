@@ -107,6 +107,7 @@ We ran the Empirical Roofline Model on 2 architectures on HPCC: intel 18 and amd
     <figcaption>AMD 20</figcaption>
 <figure>
 
+
 3. 
     **Peak performances, bandwidths, and ridgeline:**
 
@@ -137,6 +138,7 @@ Firstly, the SpMV has maximum operational intensity of 0.25, LBMHD: 1.07, Stenci
     <figcaption>AMD 20</figcaption>
 <figure>
 
+
 Based on the output of our Empirical Roofline model, we note that if the FLOPs/byte on the x-axis is in the range of L1 cache where its slope is increasing that we are memory bound -- prior to the ridge point. Alternatively, if the FLOPs/sec is in the range where we have reached our theoretical maximum, around 12.3 GFLOPs/sec, then we are in the terrority of being compute bound.  Hence, based on the vertical markers for our plots for both amd 20 and intel 18, SpMV and Stencil would be bandwidth-bound and LBMHD and 3D-FFT would be compute-bound. Some methods to improve efficiency if we are 'already at the high end of operational intensity' would involve methods to overcome the theoretical peak performance mark.  Some methods include instruction level parallelism, balancing floating-point operations, or unrolling/restructuring loops for unit size access and to ensure memory affinity, as referenced in the text from Samuel Williams. 
 
 
@@ -156,20 +158,21 @@ Among the four kernels in the warm-up, each have different characteristics regar
 
 Considering the first kernel, We see that this likely has low temporal locality due to the two indices j and i, likely being memory constrained if computations become large.  Thus, j is the outer loop and it must complete all of the computations for one j before moving to the ith index.  To improve efficiency, SIMD, stencil, loop unrolling, or blocking – referenced in the paper, are methods that could improve a kernel like this one if we are assuming that we are already at the 'high end of operational intensity'.  Additionally, as referenced in the 3C's to operational intensity section, a method like padding arrays to reduce the traffic of from conflict misses increase memory constraints. By unrolling a loop like in this question, we could potentially improve the temporal locality by reducing the number of indices from 2 to 1, relying only on j.
 
-For the second kernel, it appears to have high temporal and spatial locality. The same data is referenced twice and it uses the same index. If this kernel were to reach a bottleneck, it would be from computing. Similar methods as referenced in question 4 could be applied -- balancing floating point operations and instruction-level parallelism.  (-- THIS SHOULD BE CONFIRMED WITH REST OF GROUP -- need to elaborate on how instruction level parallelism and balancing floating point ops will make this faster).
+For the second kernel, it appears to have high temporal and spatial locality. The same data is referenced twice and it uses the same index. If this kernel were to reach a bottleneck, it would be from computing. Similar methods as referenced in question 4 could be applied -- balancing floating point operations and instruction-level parallelism.
 
 The last two kernels are both memory bound, like the first. Similar methods to overcome this constraints as mentioned for the first kernel could be applied to improve performance.
 
-    <figure>
-        <img src="part2/intel18_roofline_warmup_kernels.png" width="50%" height="auto">
-        <figcaption>Intel 18</figcaption>
-    </figure>
+<figure>
+    <img src="part2/intel18_roofline_warmup_kernels.png" width="50%" height="auto">
+    <figcaption>Intel 18</figcaption>
+</figure>
 
 
-    <figure>
-        <img src="part2/amd20_roofline_warmup_kernels.png" width="50%" height="auto">
-        <figcaption>AMD 20</figcaption>
-    <figure>
+<figure>
+    <img src="part2/amd20_roofline_warmup_kernels.png" width="50%" height="auto">
+    <figcaption>AMD 20</figcaption>
+<figure>
+
 
 6. **Compare your results for the roofline model to what you obtained for the matrix-matrix multiplication operation from Part 1. How are the rooflines of memory bandwidth related to the features in the algorithmic performance as a function of matrix size?**
 
