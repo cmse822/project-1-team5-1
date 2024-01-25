@@ -106,7 +106,7 @@ We ran the Empirical Roofline Model on 2 architectures on HPCC: intel 18 and amd
     <img src="part2/amd20_roofline.png" width="50%" height="auto">
     <figcaption>AMD 20</figcaption>
 <figure>
-&nbsp;
+<br />
 
 3. 
     **Peak performances, bandwidths, and ridgeline:**
@@ -137,7 +137,7 @@ Firstly, the SpMV has maximum operational intensity of 0.25, LBMHD: 1.07, Stenci
     <img src="part2/amd20_roofline_4kernels.png" width="50%" height="auto">
     <figcaption>AMD 20</figcaption>
 <figure>
-&nbsp;
+<br />
 
 Based on the output of our Empirical Roofline model, we note that if the FLOPs/byte on the x-axis is in the range of L1 cache where its slope is increasing that we are memory bound -- prior to the ridge point. Alternatively, if the FLOPs/sec is in the range where we have reached our theoretical maximum, around 12.3 GFLOPs/sec, then we are in the terrority of being compute bound.  Hence, based on the vertical markers for our plots for both amd 20 and intel 18, SpMV and Stencil would be bandwidth-bound and LBMHD and 3D-FFT would be compute-bound. Some methods to improve efficiency if we are 'already at the high end of operational intensity' would involve methods to overcome the theoretical peak performance mark.  Some methods include instruction level parallelism, balancing floating-point operations, or unrolling/restructuring loops for unit size access and to ensure memory affinity, as referenced in the text from Samuel Williams. 
 
@@ -172,7 +172,7 @@ The last two kernels are both memory bound, like the first. Similar methods to o
     <img src="part2/amd20_roofline_warmup_kernels.png" width="50%" height="auto">
     <figcaption>AMD 20</figcaption>
 <figure>
-&nbsp;
+<br />
 
 6. **Compare your results for the roofline model to what you obtained for the matrix-matrix multiplication operation from Part 1. How are the rooflines of memory bandwidth related to the features in the algorithmic performance as a function of matrix size?**
 
